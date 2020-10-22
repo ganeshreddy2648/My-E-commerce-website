@@ -7,7 +7,7 @@ from django.views import View
 class Index(View):
     def get(self, request):
         products = None
-        request.session.clear()
+        #request.session.clear()
         categories = Category.get_all_categories();
         categoryID = request.GET.get('category');
         if (categoryID):
@@ -17,7 +17,7 @@ class Index(View):
         data = {};
         data['products'] = products;
         data['categories'] = categories;
-        # print('you are : ', request.session.get("email"))
+        print('you are : ', request.session.get("email"))
         print('email' in request.session)
         return render(request, 'index.html', data);
 
