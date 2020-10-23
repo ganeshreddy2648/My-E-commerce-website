@@ -12,36 +12,46 @@
     <title>Hello, world!</title>
 </head>
 <body>
-    <!--navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">E-Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">E-Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Store <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Store <span class="sr-only">(current)</span></a>
             </li>
-          </ul>
-          <ul class="navbar-nav my-2 my-lg-0">
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+            {% if request.session.customer %}
+
             <li class="nav-item">
-              <a class="nav-link" href="#">LOGOUT <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/ordres">ORDERS <span class="sr-only">(current)</span></a>
             </li>
-            
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">LOGOUT <span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="/cart">CART <span class="sr-only">(current)</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/signup">SIGNUP <span class="sr-only">(current)</span></a>
-              </li>
-              
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/login">LOGIN <span class="sr-only">(current)</span></a>
-              </li>
-          </ul>
-        </div>
-      </nav>
-    <!--navbar-->
-    {% block content %}{% endblock %}
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<!--navbar-->
+{% block content %}{% endblock %}
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
